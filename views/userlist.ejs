@@ -1,0 +1,52 @@
+<!-- views/userlist.ejs -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .logout-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mb-4">Registered Users</h1>
+    <% if(users.length > 0) { %>
+        <% users.forEach(function(user) { %>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= user.username %></h5>
+                    <p class="card-text"><strong>Email:</strong> <%= user.user_email %></p>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+
+    <!-- Logout Button -->
+    <form method="post" action="/logout" class="text-center">
+        <button type="submit" class="btn btn-danger logout-btn">Logout</button>
+    </form>
+</div>
+
+</body>
+</html>
